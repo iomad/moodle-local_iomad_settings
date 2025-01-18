@@ -107,23 +107,23 @@ if ($hassiteconfig) {
                                                 0,
                                                 PARAM_INT));
 
-    $dateformats = array('Y-m-d' => 'YYYY-MM-DD',
-                         'Y/m/d' => 'YYYY/MM/DD',
-                         'Y.m.d' => 'YYYY.MM.DD',
-                         'Y-d-m' => 'YYYY-DD-MM',
-                         'Y/d/m' => 'YYYY/DD/MM',
-                         'Y.d.m' => 'YYYY.DD.MM',
-                         'd-m-Y' => 'DD-MM-YYYY',
-                         'd/m/Y' => 'DD/MM/YYYY',
-                         'd.m.Y' => 'DD.MM.YYYY',
-                         'm-d-Y' => 'MM-DD-YYYY',
-                         'm/d/Y' => 'MM/DD/YYYY',
-                         'm.d.Y' => 'MM.DD.YYYY',
-                         'jS \of F Y' => 'nth of Month YYYY',
-                         'F d, y, ' => 'Month n, YYYY',
-                         'jS \of F Y' => 'nth of Mon YYYY',
-                         'M d, y, ' => 'Mon n, YYYY');
-    $settings->add(new admin_setting_configselect('iomad_date_format', get_string('dateformat', 'local_iomad_settings'), '', 'Y-m-d', $dateformats));
+    $dateformats = array('%Y-%m-%d' => 'YYYY-MM-DD',
+                         '%Y/%m/%d' => 'YYYY/MM/DD',
+                         '%Y.%m.%d' => 'YYYY.MM.DD',
+                         '%Y-%d-%m' => 'YYYY-DD-MM',
+                         '%Y/%d/%m' => 'YYYY/DD/MM',
+                         '%Y.%d.%m' => 'YYYY.DD.MM',
+                         '%d-%m-%Y' => 'DD-MM-YYYY',
+                         '%d/%m/%Y' => 'DD/MM/YYYY',
+                         '%d.%m.%Y' => 'DD.MM.YYYY',
+                         '%m-%d-%Y' => 'MM-DD-YYYY',
+                         '%m/%d/%Y' => 'MM/DD/YYYY',
+                         '%m.%d.%Y' => 'MM.DD.YYYY',
+                         '%d %B, %Y' => 'n Month, YYYY',
+                         '%B %d, %y' => 'Month n, YY',
+                         '%d %b, %Y' => 'n Mon, YYYY',
+                         '%b %d, %y' => 'Mon n, YY');
+    $settings->add(new admin_setting_configselect('iomad_date_format', get_string('dateformat', 'local_iomad_settings'), '', '%Y-%m-%d', $dateformats));
 
     $settings->add(new admin_setting_configtext('iomad_report_fields',
                                                 get_string('iomad_report_fields', 'local_iomad_settings'),
