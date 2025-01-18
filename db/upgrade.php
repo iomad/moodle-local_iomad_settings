@@ -109,5 +109,39 @@ function xmldb_local_iomad_settings_upgrade($oldversion) {
         // Iomad savepoint reached.
         upgrade_plugin_savepoint(true, 2016031700, 'local', 'iomad_settings');
     }
+
+    if ($oldversion < 2025011800) {
+        // Update the chosen date time format to be compatible with userdate.
+        $conversionarray=['Y-m-d' => '%Y-%m-%d',
+                          'Y/m/d' => '%Y/%m/%d',
+                          'Y.m.d' => '%Y.%m.%d',
+                          'Y-d-m' => '%Y-%d-%m',
+                          'Y/d/m' => '%Y/%d/%m',
+                          'Y.d.m' => '%Y.%d.%m',
+                          'd-m-Y' => '%d-%m-%Y',
+                          'd/m/Y' => '%d/%m/%Y',
+                          'd.m.Y' => '%d.%m.%Y',
+                          'm-d-Y' => '%m-%d-%Y',
+                          'm/d/Y' => '%m/%d/%Y',
+                          'm.d.Y' => '%m.%d.%Y',
+                          'jS \of F Y' => '%d %B, %Y',
+                          'F d, y, ' => '%B %d, %y',
+                          'jS \of F Y' => '%d %b, %Y',
+                          'M d, y, ' => '%b %d, %y'];
+        // Set the default.
+        $newvalue = '%Y-%m-%d';
+
+        // Change it to what is set if it exists.
+        if (!empty($conversionarray[$CFG->iomad_date_format])) {
+            $newvalue = $conversionarray[$CFG->iomad_date_format];
+        }
+
+        mtrace( "changing IOMAD date format from $CFG->iomad_date_format to " . $newvalue);
+        set_config('iomad_date_format', "$newvalue");
+
+        // Iomad savepoint reached.
+        upgrade_plugin_savepoint(true, 2025011800, 'local', 'iomad_settings');
+    }
+
     return $result;
 }
