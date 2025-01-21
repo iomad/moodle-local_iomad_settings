@@ -136,7 +136,6 @@ function xmldb_local_iomad_settings_upgrade($oldversion) {
             $newvalue = $conversionarray[$CFG->iomad_date_format];
         }
 
-        mtrace( "changing IOMAD date format from $CFG->iomad_date_format to " . $newvalue);
         set_config('iomad_date_format', "$newvalue");
 
         // Iomad savepoint reached.
